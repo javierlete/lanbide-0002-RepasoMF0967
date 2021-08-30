@@ -10,6 +10,7 @@
     </asp:ContentPlaceHolder>
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/all.min.css" rel="stylesheet" />
 
 </head>
 <body>
