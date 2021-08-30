@@ -17,7 +17,7 @@ namespace RepasoMF0967
 
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
-            if (TextBoxEmail.Text == "administrador" && TextBoxPassword.Text == "contra")
+            if (TextBoxNombre.Text == "administrador" && TextBoxPassword.Text == "contra")
             {
                 FormsAuthentication.RedirectFromLoginPage("Administrador", false);
             }
