@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RepasoMF0967.Daos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,11 @@ namespace RepasoMF0967
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void MueblesDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
+        {
+            e.ObjectInstance = DaoMueble.GetDaoMueble();
         }
     }
 }

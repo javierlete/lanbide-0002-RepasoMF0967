@@ -13,5 +13,23 @@ namespace RepasoMF0967
 
     public partial class Default
     {
+
+        /// <summary>
+        /// Control RepeaterMuebles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterMuebles;
+
+        /// <summary>
+        /// Control MueblesDataSource.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource MueblesDataSource;
     }
 }
