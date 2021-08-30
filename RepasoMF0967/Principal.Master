@@ -23,20 +23,26 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="~">Principal</a>
+                            <asp:HyperLink runat="server" class="nav-link active" aria-current="page" NavigateUrl="~">Principal</asp:HyperLink>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Administración</a>
                         </li>
                     </ul>
-                    <span class="navbar-text">Usuario</span>
+                    <span class="navbar-text"><%= HttpContext.Current.User.Identity.Name %></span>
                     <ul class="navbar-nav mb-2 mb-lg-0">
+                        <% if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                            { %>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="~">Login</a>
+                            <asp:HyperLink runat="server" class="nav-link active" aria-current="page" NavigateUrl="~/Login.aspx">Login</asp:HyperLink>
                         </li>
+                        <% }
+                            else
+                            { %>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="~">Logout</a>
+                            <asp:LinkButton ID="LinkButtonLogout" runat="server" OnClick="LinkButtonLogout_Click" class="nav-link active" aria-current="page">Logout</asp:LinkButton>
                         </li>
+                        <% } %>
                     </ul>
                 </div>
             </div>
