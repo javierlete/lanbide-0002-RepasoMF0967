@@ -11,7 +11,27 @@ namespace RepasoMF0967.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            FormViewMueble.DefaultMode = FormViewMode.Edit;
+        }
 
+        protected void ListadoDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
+        {
+            e.ObjectInstance = Daos.DaoMueble.GetDaoMueble();
+        }
+
+        protected void RefrescarGrid(object sender, FormViewUpdatedEventArgs e)
+        {
+            GridViewMuebles.DataBind();
+        }
+
+        protected void InsertButton_Click(object sender, EventArgs e)
+        {
+            FormViewMueble.ChangeMode(FormViewMode.Insert);
+        }
+
+        protected void FormViewMueble_ItemInserted(object sender, FormViewInsertedEventArgs e)
+        {
+            GridViewMuebles.DataBind();
         }
     }
 }

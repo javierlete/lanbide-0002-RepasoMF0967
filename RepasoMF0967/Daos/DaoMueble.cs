@@ -30,7 +30,13 @@ namespace RepasoMF0967.Daos
 
         public Mueble ObtenerPorId(long id)
         {
-            return muebles[id];
+            if (muebles.ContainsKey(id))
+            {
+                return muebles[id];
+            } else
+            {
+                return null;
+            }
         }
 
         public void Insertar(Mueble mueble)
