@@ -30,20 +30,12 @@
                             <a class="nav-link" href="#">Administración</a>
                         </li>
                     </ul>
-                    <span class="navbar-text"><%= HttpContext.Current.User.Identity.Name %></span>
+                    <span id="SpanUsuario" runat="server" class="navbar-text"></span>
                     <ul class="navbar-nav mb-2 mb-lg-0">
-                        <% if (!HttpContext.Current.User.Identity.IsAuthenticated)
-                            { %>
                         <li class="nav-item">
-                            <asp:HyperLink runat="server" class="nav-link active" aria-current="page" NavigateUrl="~/Login.aspx">Login</asp:HyperLink>
-                        </li>
-                        <% }
-                            else
-                            { %>
-                        <li class="nav-item">
+                            <asp:HyperLink ID="HyperLinkLogin" runat="server" class="nav-link active" aria-current="page" NavigateUrl="~/Login.aspx">Login</asp:HyperLink>
                             <asp:LinkButton ID="LinkButtonLogout" runat="server" OnClick="LinkButtonLogout_Click" class="nav-link active" aria-current="page">Logout</asp:LinkButton>
                         </li>
-                        <% } %>
                     </ul>
                 </div>
             </div>
