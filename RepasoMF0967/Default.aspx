@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <h1>Bienvenidos</h1>
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-4">
         <asp:Repeater ID="RepeaterMuebles" runat="server" DataSourceID="MueblesDataSource">
             <ItemTemplate>
                 <div class="col">
@@ -17,7 +17,7 @@
                             <p class="card-text">Dimensiones: <%# Eval("Largo") %>x<%# Eval("Ancho") %>x<%# Eval("Alto") %></p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted"><%# Eval("Precio") %></small>
+                            <small class="text-muted"><%# Eval("Precio") %> €</small>
                         </div>
                     </div>
                 </div>
