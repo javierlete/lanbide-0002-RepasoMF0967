@@ -19,7 +19,7 @@ namespace RepasoMF0967.Daos
         }
         #endregion
 
-        private readonly Dictionary<long, Mueble> muebles = new Dictionary<long, Mueble>(){
+        private readonly SortedDictionary<long, Mueble> muebles = new SortedDictionary<long, Mueble>(){
             {1L, new Mueble(1L, "Armario", 123.4m, 1, 2, 3, DateTime.Now) },
             {2L, new Mueble(2L, "Mesa", 12.4m, 2, 3, 4, DateTime.Now) }
         };
