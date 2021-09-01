@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,6 @@ namespace RepasoMF0967.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GridViewMuebles.HeaderRow.TableSection = TableRowSection.TableHeader;
             FormViewMueble.DefaultMode = FormViewMode.Edit;
         }
 
@@ -33,6 +33,44 @@ namespace RepasoMF0967.admin
         protected void FormViewMueble_ItemInserted(object sender, FormViewInsertedEventArgs e)
         {
             GridViewMuebles.DataBind();
+        }
+
+        protected void FormViewMueble_ItemInserting(object sender, FormViewInsertEventArgs e)
+        {
+            VacioANulo(e.Values);
+        }
+
+        private static void VacioANulo(IOrderedDictionary values)
+        {
+            if ((string)values["Largo"] == "")
+            {
+                values["Largo"] = null;
+            }
+
+            if ((string)values["Ancho"] == "")
+            {
+                values["Ancho"] = null;
+            }
+
+            if ((string)values["Alto"] == "")
+            {
+                values["Alto"] = null;
+            }
+
+            if ((string)values["FechaFabricacion"] == "")
+            {
+                values["FechaFabricacion"] = null;
+            }
+        }
+
+        protected void GridViewMuebles_DataBound(object sender, EventArgs e)
+        {
+            GridViewMuebles.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
+        protected void FormViewMueble_ItemUpdating(object sender, FormViewUpdateEventArgs e)
+        {
+            VacioANulo(e.NewValues);
         }
     }
 }

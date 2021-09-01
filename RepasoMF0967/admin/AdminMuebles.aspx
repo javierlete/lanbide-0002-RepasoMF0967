@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <h1>Administración muebles</h1>
 
-    <asp:GridView DataKeyNames="Id" CssClass="table table-hover table-striped table-bordered" ID="GridViewMuebles" runat="server" AutoGenerateColumns="False" DataSourceID="ListadoDataSource">
+    <asp:GridView OnDataBound="GridViewMuebles_DataBound" DataKeyNames="Id" CssClass="table table-hover table-striped table-bordered" ID="GridViewMuebles" runat="server" AutoGenerateColumns="False" DataSourceID="ListadoDataSource">
         <HeaderStyle CssClass="table-dark" />
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id"></asp:BoundField>
@@ -28,7 +28,7 @@
     <asp:Button CssClass="btn btn-primary" ID="InsertButton" runat="server" Text="Añadir" OnClick="InsertButton_Click" />
     <asp:ObjectDataSource OnObjectCreating="ListadoDataSource_ObjectCreating" runat="server" ID="ListadoDataSource" DataObjectTypeName="RepasoMF0967.Models.Mueble" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="ObtenerTodos" TypeName="RepasoMF0967.Daos.DaoMueble" UpdateMethod="Modificar"></asp:ObjectDataSource>
 
-    <asp:FormView RenderOuterTable="false" DataKeyNames="Id" ID="FormViewMueble" runat="server" DataSourceID="FormularioDataSource" OnItemUpdated="RefrescarGrid" OnItemInserted="FormViewMueble_ItemInserted">
+    <asp:FormView OnItemUpdating="FormViewMueble_ItemUpdating" OnItemInserting="FormViewMueble_ItemInserting" RenderOuterTable="false" DataKeyNames="Id" ID="FormViewMueble" runat="server" DataSourceID="FormularioDataSource" OnItemUpdated="RefrescarGrid" OnItemInserted="FormViewMueble_ItemInserted">
         <EditItemTemplate>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Id" class="col-sm-2 col-form-label">Id</asp:Label>
@@ -39,37 +39,44 @@
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Nombre" class="col-sm-2 col-form-label">Nombre</asp:Label>
                 <div class="col-sm-10">
-                    <asp:TextBox ID="Nombre" Text='<%# Bind("Nombre") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="Nombre" Text='<%# Bind("Nombre") %>' CssClass='form-control' runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator CssClass="text-danger" ControlToValidate="Nombre" ID="RfNombre" runat="server" ErrorMessage="Es obligatorio rellenar el nombre" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
             </div>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Precio" class="col-sm-2 col-form-label">Precio</asp:Label>
                 <div class="col-sm-10">
-                    <asp:TextBox TextMode="Number" step=".01" ID="Precio" Text='<%# Bind("Precio", "{0:N2}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox TextMode="Number" step=".01" ID="Precio" Text='<%# Bind("Precio", "{0:f2}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator CssClass="text-danger" ControlToValidate="Precio" ID="RfPrecio" runat="server" ErrorMessage="Es obligatorio rellenar el precio" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:CompareValidator ID="CvPrecio" runat="server" ErrorMessage="Debe ser un número decimal positivo" Operator="GreaterThanEqual" ControlToValidate="Precio" Type="Currency" CssClass="text-danger" ValueToCompare="0" Display="Dynamic"></asp:CompareValidator>
                 </div>
             </div>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Largo" class="col-sm-2 col-form-label">Largo</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox TextMode="Number" step=".01" ID="Largo" Text='<%# Bind("Largo", "{0:f2}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:CompareValidator ID="CvLargo" runat="server" ErrorMessage="Debe ser un número decimal positivo" Operator="GreaterThanEqual" ControlToValidate="Largo" Type="Double" CssClass="text-danger" ValueToCompare="0" Display="Dynamic"></asp:CompareValidator>
                 </div>
             </div>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Ancho" class="col-sm-2 col-form-label">Ancho</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox TextMode="Number" step=".01" ID="Ancho" Text='<%# Bind("Ancho", "{0:f2}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:CompareValidator ID="CvAncho" runat="server" ErrorMessage="Debe ser un número decimal positivo" Operator="GreaterThanEqual" ControlToValidate="Ancho" Type="Double" CssClass="text-danger" ValueToCompare="0" Display="Dynamic"></asp:CompareValidator>
                 </div>
             </div>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Alto" class="col-sm-2 col-form-label">Alto</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox TextMode="Number" step=".01" ID="Alto" Text='<%# Bind("Alto", "{0:f2}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:CompareValidator ID="CvAlto" runat="server" ErrorMessage="Debe ser un número decimal positivo" Operator="GreaterThanEqual" ControlToValidate="Alto" Type="Double" CssClass="text-danger" ValueToCompare="0" Display="Dynamic"></asp:CompareValidator>
                 </div>
             </div>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="FechaFabricacion" class="col-sm-2 col-form-label">Fecha de fabricación</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox TextMode="Date" ID="FechaFabricacion" Text='<%# Bind("FechaFabricacion", "{0:yyyy-MM-dd}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:CompareValidator ID="CvFechaFabricacion" runat="server" ErrorMessage="Debe ser una fecha posterior al año 2000" Operator="GreaterThanEqual" ControlToValidate="FechaFabricacion" Type="Date" CssClass="text-danger" ValueToCompare="01-01-2000" Display="Dynamic"></asp:CompareValidator>
                 </div>
             </div>
 
@@ -78,43 +85,49 @@
                     <asp:LinkButton CssClass="btn btn-primary" runat="server" Text="Aceptar" CommandName="Update" ID="UpdateButton" CausesValidation="True" />
                 </div>
             </div>
-            
         </EditItemTemplate>
         <InsertItemTemplate>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Nombre" class="col-sm-2 col-form-label">Nombre</asp:Label>
                 <div class="col-sm-10">
-                    <asp:TextBox ID="Nombre" Text='<%# Bind("Nombre") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="Nombre" Text='<%# Bind("Nombre") %>' CssClass='form-control' runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator CssClass="text-danger" ControlToValidate="Nombre" ID="RfNombre" runat="server" ErrorMessage="Es obligatorio rellenar el nombre" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
             </div>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Precio" class="col-sm-2 col-form-label">Precio</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox TextMode="Number" step=".01" ID="Precio" Text='<%# Bind("Precio", "{0:f2}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator CssClass="text-danger" ControlToValidate="Precio" ID="RfPrecio" runat="server" ErrorMessage="Es obligatorio rellenar el precio" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:CompareValidator ID="CvPrecio" runat="server" ErrorMessage="Debe ser un número decimal positivo" Operator="GreaterThanEqual" ControlToValidate="Precio" Type="Currency" CssClass="text-danger" ValueToCompare="0" Display="Dynamic"></asp:CompareValidator>
                 </div>
             </div>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Largo" class="col-sm-2 col-form-label">Largo</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox TextMode="Number" step=".01" ID="Largo" Text='<%# Bind("Largo", "{0:f2}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:CompareValidator ID="CvLargo" runat="server" ErrorMessage="Debe ser un número decimal positivo" Operator="GreaterThanEqual" ControlToValidate="Largo" Type="Double" CssClass="text-danger" ValueToCompare="0" Display="Dynamic"></asp:CompareValidator>
                 </div>
             </div>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Ancho" class="col-sm-2 col-form-label">Ancho</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox TextMode="Number" step=".01" ID="Ancho" Text='<%# Bind("Ancho", "{0:f2}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:CompareValidator ID="CvAncho" runat="server" ErrorMessage="Debe ser un número decimal positivo" Operator="GreaterThanEqual" ControlToValidate="Ancho" Type="Double" CssClass="text-danger" ValueToCompare="0" Display="Dynamic"></asp:CompareValidator>
                 </div>
             </div>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Alto" class="col-sm-2 col-form-label">Alto</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox TextMode="Number" step=".01" ID="Alto" Text='<%# Bind("Alto", "{0:f2}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:CompareValidator ID="CvAlto" runat="server" ErrorMessage="Debe ser un número decimal positivo" Operator="GreaterThanEqual" ControlToValidate="Alto" Type="Double" CssClass="text-danger" ValueToCompare="0" Display="Dynamic"></asp:CompareValidator>
                 </div>
             </div>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="FechaFabricacion" class="col-sm-2 col-form-label">Fecha de fabricación</asp:Label>
                 <div class="col-sm-10">
                     <asp:TextBox TextMode="Date" ID="FechaFabricacion" Text='<%# Bind("FechaFabricacion", "{0:yyyy-MM-dd}") %>' CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:CompareValidator ID="CvFechaFabricacion" runat="server" ErrorMessage="Debe ser una fecha posterior al año 2000" Operator="GreaterThanEqual" ControlToValidate="FechaFabricacion" Type="Date" CssClass="text-danger" ValueToCompare="01-01-2000" Display="Dynamic"></asp:CompareValidator>
                 </div>
             </div>
 
