@@ -28,7 +28,7 @@
     <asp:Button CssClass="btn btn-primary" ID="InsertButton" runat="server" Text="Añadir" OnClick="InsertButton_Click" />
     <asp:ObjectDataSource OnObjectCreating="ListadoDataSource_ObjectCreating" runat="server" ID="ListadoDataSource" DataObjectTypeName="RepasoMF0967.Models.Mueble" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="ObtenerTodos" TypeName="RepasoMF0967.Daos.DaoMueble" UpdateMethod="Modificar"></asp:ObjectDataSource>
 
-    <asp:FormView DataKeyNames="Id" CssClass="w-100" ID="FormViewMueble" runat="server" DataSourceID="FormularioDataSource" OnItemUpdated="RefrescarGrid" OnItemInserted="FormViewMueble_ItemInserted">
+    <asp:FormView RenderOuterTable="false" DataKeyNames="Id" ID="FormViewMueble" runat="server" DataSourceID="FormularioDataSource" OnItemUpdated="RefrescarGrid" OnItemInserted="FormViewMueble_ItemInserted">
         <EditItemTemplate>
             <div class="row mb-3">
                 <asp:Label runat="server" AssociatedControlID="Id" class="col-sm-2 col-form-label">Id</asp:Label>
