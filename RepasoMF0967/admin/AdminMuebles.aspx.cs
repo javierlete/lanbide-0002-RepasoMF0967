@@ -12,7 +12,10 @@ namespace RepasoMF0967.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            FormViewMueble.DefaultMode = FormViewMode.Edit;
+            if (!IsPostBack)
+            {
+                FormViewMueble.DefaultMode = FormViewMode.Edit;
+            }
         }
 
         protected void ListadoDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
@@ -71,6 +74,11 @@ namespace RepasoMF0967.admin
         protected void FormViewMueble_ItemUpdating(object sender, FormViewUpdateEventArgs e)
         {
             VacioANulo(e.NewValues);
+        }
+
+        protected void EditarButton_Click(object sender, EventArgs e)
+        {
+            FormViewMueble.ChangeMode(FormViewMode.Edit);
         }
     }
 }
