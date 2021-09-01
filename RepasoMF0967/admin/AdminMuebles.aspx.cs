@@ -11,6 +11,7 @@ namespace RepasoMF0967.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GridViewMuebles.HeaderRow.TableSection = TableRowSection.TableHeader;
             FormViewMueble.DefaultMode = FormViewMode.Edit;
         }
 

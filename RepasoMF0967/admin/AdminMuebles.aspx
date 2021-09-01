@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="AdminMuebles.aspx.cs" Inherits="RepasoMF0967.admin.AdminMuebles" Culture="en-US" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../Content/dataTables.bootstrap5.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <h1>Administración muebles</h1>
@@ -147,4 +148,17 @@
             <asp:ControlParameter ControlID="GridViewMuebles" PropertyName="SelectedValue" Name="id" Type="Int64"></asp:ControlParameter>
         </SelectParameters>
     </asp:ObjectDataSource>
+    <script src="/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="/Scripts/jquery.dataTables.min.js"></script>
+    <script src="/Scripts/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(function () {
+            $('table').DataTable({
+                language: {
+                    url: '/Content/es_es.json'
+                }
+            })
+        });
+    </script>
 </asp:Content>

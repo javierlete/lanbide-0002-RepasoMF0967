@@ -6,12 +6,12 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Repaso MF0967</title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
-
+    
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/all.min.css" rel="stylesheet" />
-
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,7 +27,7 @@
                             <asp:HyperLink runat="server" class="nav-link active" aria-current="page" NavigateUrl="~">Principal</asp:HyperLink>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Administración</a>
+                            <asp:HyperLink runat="server" class="nav-link" NavigateUrl="~/admin/AdminMuebles.aspx">Administración</asp:HyperLink>
                         </li>
                     </ul>
                     <span id="SpanUsuario" runat="server" class="navbar-text"></span>
