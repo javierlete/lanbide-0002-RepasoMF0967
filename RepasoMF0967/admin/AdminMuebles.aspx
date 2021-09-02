@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <h1>Administración muebles</h1>
 
-    <asp:GridView OnDataBound="GridViewMuebles_DataBound" DataKeyNames="Id" CssClass="table table-hover table-striped table-bordered" ID="GridViewMuebles" runat="server" AutoGenerateColumns="False" DataSourceID="ListadoDataSource">
+    <asp:GridView OnDataBound="GridViewMuebles_DataBound" DataKeyNames="Id" CssClass="table table-hover table-striped table-bordered" ID="GridViewMuebles" runat="server" AutoGenerateColumns="False" DataSourceID="ListadoDataSource" OnSelectedIndexChanged="GridViewMuebles_SelectedIndexChanged">
         <HeaderStyle CssClass="table-dark" />
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id"></asp:BoundField>
@@ -82,7 +82,7 @@
 
             <div class="row mb-3">
                 <div class="offset-sm-2 col-sm-10">
-                    <asp:LinkButton CssClass="btn btn-primary" runat="server" Text="Aceptar" CommandName="Update" ID="UpdateButton" CausesValidation="True" ValidationGroup="Editar" />
+                    <asp:LinkButton CssClass="btn btn-primary" runat="server" Text="Guardar" CommandName="Update" ID="UpdateButton" CausesValidation="True" ValidationGroup="Editar" />
                 </div>
             </div>
         </EditItemTemplate>
@@ -133,7 +133,7 @@
 
             <div class="row mb-3">
                 <div class="offset-sm-2 col-sm-10">
-                    <asp:LinkButton CssClass="btn btn-primary" runat="server" Text="Aceptar" CommandName="Insert" ID="InsertButton" CausesValidation="True" ValidationGroup="Insertar" />
+                    <asp:LinkButton CssClass="btn btn-primary" runat="server" Text="Insertar" CommandName="Insert" ID="InsertButton" CausesValidation="True" ValidationGroup="Insertar" />
                 </div>
             </div>
         </InsertItemTemplate>

@@ -26,16 +26,19 @@ namespace RepasoMF0967.admin
         protected void RefrescarGrid(object sender, FormViewUpdatedEventArgs e)
         {
             GridViewMuebles.DataBind();
+            FormViewMueble.Visible = false;
         }
 
         protected void InsertButton_Click(object sender, EventArgs e)
         {
             FormViewMueble.ChangeMode(FormViewMode.Insert);
+            FormViewMueble.Visible = true;
         }
 
         protected void FormViewMueble_ItemInserted(object sender, FormViewInsertedEventArgs e)
         {
             GridViewMuebles.DataBind();
+            FormViewMueble.Visible = false;
         }
 
         protected void FormViewMueble_ItemInserting(object sender, FormViewInsertEventArgs e)
@@ -79,6 +82,11 @@ namespace RepasoMF0967.admin
         protected void EditarButton_Click(object sender, EventArgs e)
         {
             FormViewMueble.ChangeMode(FormViewMode.Edit);
+        }
+
+        protected void GridViewMuebles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FormViewMueble.Visible = true;
         }
     }
 }
