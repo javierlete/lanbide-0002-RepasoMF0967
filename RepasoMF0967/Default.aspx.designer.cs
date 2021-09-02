@@ -15,21 +15,21 @@ namespace RepasoMF0967
     {
 
         /// <summary>
-        /// Control RepeaterMuebles.
+        /// Control Repeater1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RepeaterMuebles;
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
 
         /// <summary>
-        /// Control MueblesDataSource.
+        /// Control MueblesDataTableDataSource.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource MueblesDataSource;
+        protected global::System.Web.UI.WebControls.ObjectDataSource MueblesDataTableDataSource;
     }
 }

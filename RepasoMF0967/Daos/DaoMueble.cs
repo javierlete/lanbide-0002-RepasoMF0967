@@ -1,6 +1,7 @@
 ﻿using RepasoMF0967.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -26,6 +27,26 @@ namespace RepasoMF0967.Daos
         public IEnumerable<Mueble> ObtenerTodos()
         {
             return muebles.Values;
+        }
+
+        public DataTable ObtenerTodosDataTable()
+        {
+            DataTable dt = new DataTable("Muebles");
+
+            dt.Columns.Add("Id", typeof(long));
+            dt.Columns.Add("Nombre", typeof(string));
+            dt.Columns.Add("Precio", typeof(decimal));
+            dt.Columns.Add("Largo", typeof(double));
+            dt.Columns.Add("Ancho", typeof(double));
+            dt.Columns.Add("Alto", typeof(double));
+            dt.Columns.Add("FechaFabricacion", typeof(DateTime));
+
+            foreach(Mueble mueble in muebles.Values)
+            {
+                dt.Rows.Add(mueble.Id, mueble.Nombre, mueble.Precio, mueble.Largo, mueble.Ancho, mueble.Alto, mueble.FechaFabricacion);
+            }
+
+            return dt;
         }
 
         public Mueble ObtenerPorId(long id)
