@@ -20,7 +20,7 @@ namespace RepasoMF0967.admin
 
         protected void ListadoDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
         {
-            e.ObjectInstance = Daos.DaoMueble.GetDaoMueble();
+            e.ObjectInstance = Daos.DaoMuebleSqlServer.GetDaoMueble();
         }
 
         protected void RefrescarGrid(object sender, FormViewUpdatedEventArgs e)

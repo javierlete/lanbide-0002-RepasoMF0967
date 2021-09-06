@@ -148,6 +148,7 @@
     <Compile Include="admin\AdminMuebles.aspx.designer.cs">
       <DependentUpon>AdminMuebles.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Daos\DaoMuebleSqlServer.cs" />
     <Compile Include="Daos\DaoMueble.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
