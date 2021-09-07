@@ -17,7 +17,7 @@ namespace RepasoMF0967
 
         protected void MueblesDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
         {
-            e.ObjectInstance = DaoMuebleSqlServer.GetDaoMueble();
+            e.ObjectInstance = Configuracion.dao;
         }
     }
 }

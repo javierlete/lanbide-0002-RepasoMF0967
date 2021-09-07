@@ -7,7 +7,7 @@ using System.Web;
 
 namespace RepasoMF0967.Daos
 {
-    public class DaoMueble
+    public class DaoMueble : IDaoMueble
     {
         #region Singleton
         private static readonly DaoMueble dao = new DaoMueble();

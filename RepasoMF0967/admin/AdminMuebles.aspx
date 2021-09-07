@@ -26,7 +26,7 @@
         </Columns>
     </asp:GridView>
     <asp:Button CausesValidation="false" CssClass="btn btn-primary" ID="InsertButton" runat="server" Text="Añadir" OnClick="InsertButton_Click" />
-    <asp:ObjectDataSource OnObjectCreating="ListadoDataSource_ObjectCreating" runat="server" ID="ListadoDataSource" DataObjectTypeName="RepasoMF0967.Models.Mueble" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="ObtenerTodos" TypeName="RepasoMF0967.Daos.DaoMuebleSqlServer" UpdateMethod="Modificar"></asp:ObjectDataSource>
+    <asp:ObjectDataSource OnObjectCreating="ListadoDataSource_ObjectCreating" runat="server" ID="ListadoDataSource" DataObjectTypeName="RepasoMF0967.Models.Mueble" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="ObtenerTodos" TypeName="RepasoMF0967.Daos.IDaoMueble" UpdateMethod="Modificar"></asp:ObjectDataSource>
 
     <asp:FormView OnItemUpdating="FormViewMueble_ItemUpdating" OnItemInserting="FormViewMueble_ItemInserting" RenderOuterTable="false" DataKeyNames="Id" ID="FormViewMueble" runat="server" DataSourceID="FormularioDataSource" OnItemUpdated="RefrescarGrid" OnItemInserted="FormViewMueble_ItemInserted">
         <EditItemTemplate>
@@ -156,7 +156,7 @@
         </ItemTemplate>--%>
     </asp:FormView>
 
-    <asp:ObjectDataSource OnObjectCreating="ListadoDataSource_ObjectCreating" runat="server" ID="FormularioDataSource" DataObjectTypeName="RepasoMF0967.Models.Mueble" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="ObtenerPorId" TypeName="RepasoMF0967.Daos.DaoMuebleSqlServer" UpdateMethod="Modificar">
+    <asp:ObjectDataSource OnObjectCreating="ListadoDataSource_ObjectCreating" runat="server" ID="FormularioDataSource" DataObjectTypeName="RepasoMF0967.Models.Mueble" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="ObtenerPorId" TypeName="RepasoMF0967.Daos.IDaoMueble" UpdateMethod="Modificar">
         <SelectParameters>
             <asp:ControlParameter ControlID="GridViewMuebles" PropertyName="SelectedValue" Name="id" Type="Int64"></asp:ControlParameter>
         </SelectParameters>

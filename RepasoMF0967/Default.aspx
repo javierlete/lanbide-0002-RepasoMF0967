@@ -44,7 +44,7 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-        <asp:ObjectDataSource OnObjectCreating="MueblesDataSource_ObjectCreating" ID="MueblesDataTableDataSource" runat="server" DataObjectTypeName="RepasoMF0967.Models.Mueble" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="ObtenerTodos" TypeName="RepasoMF0967.Daos.DaoMuebleSqlServer" UpdateMethod="Modificar"></asp:ObjectDataSource>
+        <asp:ObjectDataSource OnObjectCreating="MueblesDataSource_ObjectCreating" ID="MueblesDataTableDataSource" runat="server" DataObjectTypeName="RepasoMF0967.Models.Mueble" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="ObtenerTodos" TypeName="RepasoMF0967.Daos.IDaoMueble" UpdateMethod="Modificar"></asp:ObjectDataSource>
     </div>
     
 </asp:Content>

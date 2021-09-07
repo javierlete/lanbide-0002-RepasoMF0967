@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RepasoMF0967.Daos;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace RepasoMF0967.admin
 
         protected void ListadoDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
         {
-            e.ObjectInstance = Daos.DaoMuebleSqlServer.GetDaoMueble();
+            e.ObjectInstance = Configuracion.dao;
         }
 
         protected void RefrescarGrid(object sender, FormViewUpdatedEventArgs e)

@@ -8,7 +8,7 @@ using System.Web;
 
 namespace RepasoMF0967.Daos
 {
-    public class DaoMuebleSqlServer
+    public class DaoMuebleSqlServer : IDaoMueble
     {
         private const string CADENA_CONEXION = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=mf0966;Integrated Security=True";
         private const string SQL_SELECT = @"SELECT * FROM Muebles";
