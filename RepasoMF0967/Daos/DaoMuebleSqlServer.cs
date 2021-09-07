@@ -44,7 +44,7 @@ namespace RepasoMF0967.Daos
 
                     while (dr.Read())
                     {
-                        muebles.Add(new Mueble((long?)dr["Id"], (string)dr["Nombre"], (decimal?)dr["Precio"], (double?)dr["Largo"], (double?)dr["Ancho"], (double?)dr["Alto"], (DateTime?)dr["FechaFabricacion"]));
+                        muebles.Add(new Mueble(dr["Id"] as long?, dr["Nombre"] as string, dr["Precio"] as decimal?, dr["Largo"] as double?, dr["Ancho"] as double?, dr["Alto"] as double?, dr["FechaFabricacion"] as DateTime?));
                     }
                 }
                 
@@ -95,7 +95,7 @@ namespace RepasoMF0967.Daos
                 {
                     if (dr.Read())
                     {
-                        mueble = new Mueble((long?)dr["Id"], (string)dr["Nombre"], (decimal?)dr["Precio"], (double?)dr["Largo"], (double?)dr["Ancho"], (double?)dr["Alto"], (DateTime?)dr["FechaFabricacion"]);
+                        mueble = new Mueble(dr["Id"] as long?, dr["Nombre"] as string, dr["Precio"] as decimal?, dr["Largo"] as double?, dr["Ancho"] as double?, dr["Alto"] as double?, dr["FechaFabricacion"] as DateTime?);
                     }
                 }
 
@@ -124,7 +124,7 @@ namespace RepasoMF0967.Daos
 
                 parLargo.DbType = DbType.Double;
                 parLargo.ParameterName = "Largo";
-                parLargo.Value = mueble.Largo;
+                parLargo.Value = Opcional(mueble.Largo);
 
                 com.Parameters.Add(parLargo);
 
@@ -132,7 +132,7 @@ namespace RepasoMF0967.Daos
 
                 parAncho.DbType = DbType.Double;
                 parAncho.ParameterName = "Ancho";
-                parAncho.Value = mueble.Ancho;
+                parAncho.Value = Opcional(mueble.Ancho);
 
                 com.Parameters.Add(parAncho);
 
@@ -140,7 +140,7 @@ namespace RepasoMF0967.Daos
 
                 parAlto.DbType = DbType.Double;
                 parAlto.ParameterName = "Alto";
-                parAlto.Value = mueble.Alto;
+                parAlto.Value = Opcional(mueble.Alto);
 
                 com.Parameters.Add(parAlto);
 
@@ -148,7 +148,7 @@ namespace RepasoMF0967.Daos
 
                 parFechaFabricacion.DbType = DbType.Date;
                 parFechaFabricacion.ParameterName = "FechaFabricacion";
-                parFechaFabricacion.Value = mueble.FechaFabricacion;
+                parFechaFabricacion.Value = Opcional(mueble.FechaFabricacion);
 
                 com.Parameters.Add(parFechaFabricacion);
 
@@ -193,7 +193,7 @@ namespace RepasoMF0967.Daos
 
                 parLargo.DbType = DbType.Double;
                 parLargo.ParameterName = "Largo";
-                parLargo.Value = mueble.Largo;
+                parLargo.Value = Opcional(mueble.Largo);
 
                 com.Parameters.Add(parLargo);
 
@@ -201,7 +201,7 @@ namespace RepasoMF0967.Daos
 
                 parAncho.DbType = DbType.Double;
                 parAncho.ParameterName = "Ancho";
-                parAncho.Value = mueble.Ancho;
+                parAncho.Value = Opcional(mueble.Ancho);
 
                 com.Parameters.Add(parAncho);
 
@@ -209,7 +209,7 @@ namespace RepasoMF0967.Daos
 
                 parAlto.DbType = DbType.Double;
                 parAlto.ParameterName = "Alto";
-                parAlto.Value = mueble.Alto;
+                parAlto.Value = Opcional(mueble.Alto);
 
                 com.Parameters.Add(parAlto);
 
@@ -217,7 +217,7 @@ namespace RepasoMF0967.Daos
 
                 parFechaFabricacion.DbType = DbType.Date;
                 parFechaFabricacion.ParameterName = "FechaFabricacion";
-                parFechaFabricacion.Value = mueble.FechaFabricacion;
+                parFechaFabricacion.Value = Opcional(mueble.FechaFabricacion);
 
                 com.Parameters.Add(parFechaFabricacion);
 
@@ -257,6 +257,11 @@ namespace RepasoMF0967.Daos
         public void Borrar(Mueble mueble)
         {
             Borrar(mueble.Id.Value);
+        }
+
+        private static object Opcional(object valor)
+        {
+            return valor ?? DBNull.Value;
         }
     }
 }
