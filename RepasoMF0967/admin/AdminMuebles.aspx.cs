@@ -72,7 +72,10 @@ namespace RepasoMF0967.admin
 
         protected void GridViewMuebles_DataBound(object sender, EventArgs e)
         {
-            GridViewMuebles.HeaderRow.TableSection = TableRowSection.TableHeader;
+            if (GridViewMuebles.Rows.Count != 0)
+            {
+                GridViewMuebles.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         protected void FormViewMueble_ItemUpdating(object sender, FormViewUpdateEventArgs e)
