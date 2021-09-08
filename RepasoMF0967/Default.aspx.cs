@@ -1,6 +1,7 @@
 ﻿using RepasoMF0967.Daos;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,6 +19,20 @@ namespace RepasoMF0967
         protected void MueblesDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
         {
             e.ObjectInstance = Configuracion.dao;
+        }
+
+        protected void MueblesDataTableDataSource_Selected(object sender, ObjectDataSourceStatusEventArgs e)
+        {
+            if (e.Exception != null)
+            {
+                Principal maestra = (Principal)Page.Master;
+                Panel p = (Panel)maestra.FindControl("panelAlerta");
+                p.Visible = true;
+                maestra.MensajeAlerta = "No se han encontrado los registros";
+                
+                Debug.Print(e.Exception.Message);
+                e.ExceptionHandled = true;
+            }
         }
     }
 }

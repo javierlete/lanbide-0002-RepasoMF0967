@@ -150,6 +150,7 @@
       <DependentUpon>AdminMuebles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Daos\Configuracion.cs" />
+    <Compile Include="Daos\DaoException.cs" />
     <Compile Include="Daos\IDao.cs" />
     <Compile Include="Daos\DaoMuebleSqlServer.cs" />
     <Compile Include="Daos\DaoMueble.cs" />

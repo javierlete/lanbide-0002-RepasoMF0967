@@ -6,10 +6,10 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Repaso MF0967</title>
-    
+
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/all.min.css" rel="stylesheet" />
-    
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -40,6 +40,12 @@
                 </div>
             </div>
         </nav>
+        <asp:Panel runat="server" ID="panelAlerta" Visible="false">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= MensajeAlerta %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </asp:Panel>
         <main class="container-fluid">
             <asp:ContentPlaceHolder ID="contenido" runat="server">
             </asp:ContentPlaceHolder>

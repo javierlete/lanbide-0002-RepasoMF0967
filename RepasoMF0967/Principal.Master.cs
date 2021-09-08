@@ -11,6 +11,7 @@ namespace RepasoMF0967
 {
     public partial class Principal : System.Web.UI.MasterPage
     {
+        public string MensajeAlerta { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             IIdentity identidad = HttpContext.Current.User.Identity;

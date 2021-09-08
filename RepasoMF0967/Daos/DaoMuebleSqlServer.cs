@@ -30,25 +30,32 @@ namespace RepasoMF0967.Daos
 
         public IEnumerable<Mueble> ObtenerTodos()
         {
-            using (IDbConnection con = new SqlConnection(CADENA_CONEXION))
+            try
             {
-                con.Open();
-
-                IDbCommand com = con.CreateCommand();
-                com.CommandText = SQL_SELECT;
-
-                List<Mueble> muebles = new List<Mueble>();
-                
-                using (IDataReader dr = com.ExecuteReader())
+                using (IDbConnection con = new SqlConnection(CADENA_CONEXION))
                 {
+                    con.Open();
 
-                    while (dr.Read())
+                    IDbCommand com = con.CreateCommand();
+                    com.CommandText = SQL_SELECT;
+
+                    List<Mueble> muebles = new List<Mueble>();
+
+                    using (IDataReader dr = com.ExecuteReader())
                     {
-                        muebles.Add(new Mueble(dr["Id"] as long?, dr["Nombre"] as string, dr["Precio"] as decimal?, dr["Largo"] as double?, dr["Ancho"] as double?, dr["Alto"] as double?, dr["FechaFabricacion"] as DateTime?));
+
+                        while (dr.Read())
+                        {
+                            muebles.Add(new Mueble(dr["Id"] as long?, dr["Nombre"] as string, dr["Precio"] as decimal?, dr["Largo"] as double?, dr["Ancho"] as double?, dr["Alto"] as double?, dr["FechaFabricacion"] as DateTime?));
+                        }
                     }
+
+                    return muebles;
                 }
-                
-                return muebles;
+            }
+            catch (Exception e)
+            {
+                throw new DaoException("No se han podido obtener todos los registros",e);
             }
         }
 
